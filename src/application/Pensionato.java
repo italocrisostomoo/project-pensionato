@@ -7,41 +7,58 @@ import entities.Rent;
 public class Pensionato {
 
 	public static void main(String[] args) {
-		
+
+		int feedback = 0;
+
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 
-		System.out.print("How many rooms will be rented? ");
-		int rentsQtt = sc.nextInt();
-
 		Rent[] rooms = new Rent[10];
 
-		for (int i = 0; i < rentsQtt; i++) {
+		do {
 
-			System.out.println("\nRent #" + (i + 1));
+			System.out.println("1 - Rent\n2 - Busy Rooms\nOption: ");
+			feedback = sc.nextInt();
 
-			System.out.print("Name: ");
-			sc.nextLine();
-			String name = sc.nextLine();
+			switch (feedback) {
 
-			System.out.print("Email: ");
-			String email = sc.nextLine();
+			case 1:
 
-			System.out.print("Room: ");
-			int room = sc.nextInt();
+				System.out.print("How many rooms will be rented? ");
+				int rentsQtt = sc.nextInt();
 
-			rooms[room] = new Rent(name, email, room);
-		}
+				for (int i = 0; i < rentsQtt; i++) {
 
-		System.out.println("\nBusy rooms: \n");
+					System.out.println("\nRent #" + (i + 1));
 
-		for (int i = 0; i < 10; i++) {
+					System.out.print("Name: ");
+					sc.nextLine();
+					String name = sc.nextLine();
 
-			if (rooms[i] != null) {
-				System.out.println(rooms[i].getRoom() + ": " + rooms[i].getName() + ", " + rooms[i].getEmail());
+					System.out.print("Email: ");
+					String email = sc.nextLine();
+
+					System.out.print("Room: ");
+					int room = sc.nextInt();
+
+					rooms[room] = new Rent(name, email, room);
+				}
+				break;
+
+			case 2:
+				System.out.println("\nBusy rooms: \n");
+
+				for (int i = 0; i < 10; i++) {
+
+					if (rooms[i] != null) {
+						System.out.println(rooms[i].getRoom() + ": " + rooms[i].getName() + ", " + rooms[i].getEmail());
+					}
+				}
+				
+				break;
 			}
-		}
-		
+		} while (feedback != 999);
+
 		sc.close();
 	}
 
